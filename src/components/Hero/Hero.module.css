@@ -1,6 +1,6 @@
 .hero {
     padding: 30px 15px;
-    min-height: calc(100vh - 70px);
+    min-height: calc(100vh - 50px);
     display: flex;
     align-items: center;
 }
@@ -13,7 +13,8 @@
 }
 
 .hero .text {
-    width: 450px;
+    width: 646px;
+    flex-shrink: 0;
 }
 
 .hero .subtitle {
@@ -26,14 +27,13 @@
 }
 
 .hero .image {
-    width: 40%;
+    width: 100%;
     display: flex;
     justify-content: center;
 }
 
 .hero .image img {
     width: 100%;
-    max-width: 400px;
     border-radius: 100%;
     object-fit: cover;
     aspect-ratio: 1 / 1;
@@ -47,7 +47,7 @@
     display: block;
     width: 100%;
     background-color: var(--accent-color);
-    color: #FFFFFF;
+    color: #ffffff;
     transition: background-color 0.4s;
     height: 50px;
     display: flex;
@@ -75,11 +75,17 @@
     object-fit: cover;
     margin: 0 auto;
     margin-bottom: 25px;
-    max-width: 300px;
+    max-width: 500px;
     display: none;
 }
 
-@media screen and (max-width: 970px) {
+@media screen and (max-width: 1500px) {
+    .hero .container {
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 1050px) {
     .hero .mobile-profile-picture {
         display: block;
     }
@@ -94,5 +100,11 @@
 
     .hero .text {
         width: 100%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .hero .mobile-profile-picture {
+        max-width: 300px;
     }
 }

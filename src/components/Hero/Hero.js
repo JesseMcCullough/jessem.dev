@@ -6,12 +6,30 @@ export default function Hero() {
         <section className={styles.hero} id="#about">
             <div className={`${styles.container} container`}>
                 <div className={styles.text}>
-                    <h1>Hi, <span className={styles.highlight}>I'm Jesse McCullough</span>
-                        <span className={styles.subtitle}>a Software Developer</span>
+                    <h1>
+                        Hi, I'm{" "}
+                        <span className={styles.highlight}>
+                            Jesse McCullough
+                        </span>
+                        ,<br /> a{" "}
+                        <span className={styles.highlight}>
+                            software engineer
+                            <br />
+                        </span>{" "}
+                        who specializes in{" "}
+                        <span className={styles.highlight}>
+                            web development
+                        </span>
+                        .
                     </h1>
-                    <img src={profilePicture} className={styles["mobile-profile-picture"]} alt="" />
-                    <p>I primarily develop for the web, whether it's a simple website or a dynamic web app. I enjoy learning new technologies across all platforms though. Right now, I'm creating a portfolio to demonstrate proficiency in different tech stacks. Feel free to follow my progress through this website or on <a href="https://www.instagram.com/jessemccullough" target="_blank" rel="noreferrer">my Instagram @JesseMcCullough</a>.</p>
-                    <a className={styles.button} href="#contact">Contact Me</a>
+                    <img
+                        src={profilePicture}
+                        className={styles["mobile-profile-picture"]}
+                        alt=""
+                    />
+                    <a className={styles.button} href="#contact">
+                        Contact me
+                    </a>
                 </div>
                 <div className={styles.image}>
                     <img src={profilePicture} alt="" />

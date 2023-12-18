@@ -1,63 +1,85 @@
 :root {
-  --text-color: #2A2A2A;
-  --accent-color: #00A6FC;
-  --accent-hover-color: #0091DC;
+    --text-color: #707070;
+    --accent-color: #00a6fc;
+    --accent-hover-color: #0091dc;
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 body {
-  font-size: 16px;
-  font-family: Arial;
+    font-size: 16px;
+    font-family: Arial;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: var(--text-color);
-  font-weight: normal;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--text-color);
+    font-weight: normal;
 }
 
 p {
-  color: var(--text-color);
+    color: var(--text-color);
 }
 
 a {
-  color: var(--text-color);
-  transition: color 0.4s;
+    color: var(--text-color);
+    transition: color 0.4s;
 }
 
 a:hover {
-  color: var(--accent-hover-color);
+    color: var(--accent-hover-color);
 }
 
 .highlight {
-  color: var(--accent-color);
+    color: var(--accent-color);
 }
 
 .container {
-  max-width: 1900px;
-  margin: 0 auto;
+    max-width: 1900px;
+    margin: 0 auto;
 }
 
-h1, h2 {
-  font-size: 2.5em;
+h1,
+h2 {
+    font-size: 3.5em;
+}
+
+@media screen and (max-width: 1050px) {
+    h1,
+    h2 {
+        font-size: 3em;
+    }
 }
 
 @media screen and (max-width: 600px) {
-  h1, h2 {
-    font-size: 2em;
-  }
+    h1,
+    h2 {
+        font-size: 2.25em;
+    }
+}
+
+@media screen and (max-width: 445px) {
+    h1,
+    h2 {
+        font-size: 2em;
+    }
 }
 
 @media screen and (max-width: 400px) {
-  h1, h2 {
-    font-size: 1.75em;
-  }
+    h1,
+    h2 {
+        font-size: 1.75em;
+    }
 }
