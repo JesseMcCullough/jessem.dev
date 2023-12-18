@@ -1,0 +1,63 @@
+.project {
+    background-color: #FCFCFC;
+    padding: 15px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.project p {
+    margin-bottom: auto;
+}
+
+.project .technologies {
+    margin-top: 15px;
+}
+
+.project .technologies img {
+    height: 30px;
+    width: auto;
+    margin-right: 10px;
+    margin-bottom: 15px;
+}
+
+.project .project-image {
+    width: 100%;
+    margin: 15px 0;
+}
+
+.project .buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.project .buttons a {
+    width: 50%;
+    height: 50px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+}
+
+.project .buttons .github {
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
+    transition: background-color 0.4s, color 0.4s;
+}
+
+.project .buttons .github:hover {
+    background-color: var(--text-color);
+    color: #FFFFFF;
+}
+
+.project .buttons .demo {
+    background-color: var(--accent-color);
+    color: #FFFFFF;
+    transition: background-color 0.4s;
+}
+
+.project .buttons .demo:hover {
+    background-color: var(--accent-hover-color);
+}

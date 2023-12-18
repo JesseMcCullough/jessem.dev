@@ -1,0 +1,34 @@
+.skills-banner {
+    padding: 0 15px;
+}
+
+.skills-banner .container {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+}
+
+.skills-banner img {
+    height: 75px;
+    width: auto;
+}
+
+@media screen and (max-width: 950px) {
+    .skills-banner .container {
+        gap: 20px;
+    }
+
+    .skills-banner img {
+        height: 40px;
+    }
+}
+
+@media screen and (max-width: 470px) {
+    .skills-banner .container {
+        gap: 10px;
+    }
+    
+    .skills-banner img {
+        height: 30px;
+    }
+}

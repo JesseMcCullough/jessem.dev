@@ -1,0 +1,98 @@
+.hero {
+    padding: 30px 15px;
+    min-height: calc(100vh - 70px);
+    display: flex;
+    align-items: center;
+}
+
+.hero .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+}
+
+.hero .text {
+    width: 450px;
+}
+
+.hero .subtitle {
+    display: block;
+    font-size: 0.75em;
+}
+
+.hero .text .highlight {
+    color: var(--accent-color);
+}
+
+.hero .image {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+}
+
+.hero .image img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 100%;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+}
+
+.hero h1 {
+    margin-bottom: 25px;
+}
+
+.hero .button {
+    display: block;
+    width: 100%;
+    background-color: var(--accent-color);
+    color: #FFFFFF;
+    transition: background-color 0.4s;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    text-decoration: none;
+    font-size: 1.125em;
+}
+
+.hero .button:hover {
+    background-color: var(--accent-hover-color);
+}
+
+.hero p {
+    font-size: 1.125em;
+    line-height: 175%;
+    margin-bottom: 25px;
+}
+
+.hero .mobile-profile-picture {
+    border-radius: 100%;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    margin: 0 auto;
+    margin-bottom: 25px;
+    max-width: 300px;
+    display: none;
+}
+
+@media screen and (max-width: 970px) {
+    .hero .mobile-profile-picture {
+        display: block;
+    }
+
+    .hero .image {
+        display: none;
+    }
+
+    .hero h1 {
+        text-align: center;
+    }
+
+    .hero .text {
+        width: 100%;
+    }
+}
