@@ -15,15 +15,25 @@ export default function Navigation() {
             <div className={`${styles.container} container`}>
                 <div className={styles.person}>
                     <span className={styles.name}>Jesse McCullough</span>
-                    <span className={styles.title}>Software Developer</span>
                 </div>
                 <ul>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li className={styles.button}><a href="#contact">Contact</a></li>
+                    <li>
+                        <a href="#portfolio">Portfolio</a>
+                    </li>
+                    <li>
+                        <a href="#skills">Skills</a>
+                    </li>
+                    <li>
+                        <a href="#about">About</a>
+                    </li>
+                    <li className={styles.button}>
+                        <a href="#contact">Contact me</a>
+                    </li>
                 </ul>
-                <div className={styles["mobile-menu-icon"]} onClick={onClickMobileMenu}>
+                <div
+                    className={styles["mobile-menu-icon"]}
+                    onClick={onClickMobileMenu}
+                >
                     <div className={styles.bar}></div>
                     <div className={styles.bar}></div>
                     <div className={styles.bar}></div>
