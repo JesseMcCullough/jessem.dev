@@ -17,16 +17,16 @@ export default function Navigation() {
                     <span className={styles.name}>Jesse McCullough</span>
                 </div>
                 <ul>
-                    <li>
+                    <li onClick={onClickMobileMenu}>
                         <a href="#portfolio">Portfolio</a>
                     </li>
-                    <li>
+                    <li onClick={onClickMobileMenu}>
                         <a href="#skills">Skills</a>
                     </li>
-                    <li>
+                    <li onClick={onClickMobileMenu}>
                         <a href="#about">About</a>
                     </li>
-                    <li className={styles.button}>
+                    <li onClick={onClickMobileMenu} className={styles.button}>
                         <a href="#contact">Contact me</a>
                     </li>
                 </ul>
