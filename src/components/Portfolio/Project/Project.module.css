@@ -1,9 +1,27 @@
 .project {
-    background-color: #FCFCFC;
+    background-color: #ffffff;
     padding: 15px;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
+    box-shadow: 0 0px 30px #ebebeb;
+    width: 40%;
+    flex-shrink: 0;
+    scroll-snap-align: center;
+}
+
+.project:first-child {
+    margin-left: 40%;
+}
+
+.project:last-child {
+    margin-right: 40%;
+}
+
+@media screen and (max-width: 1300px) {
+    .project {
+        width: 80%;
+    }
 }
 
 .project p {
@@ -19,11 +37,6 @@
     width: auto;
     margin-right: 10px;
     margin-bottom: 15px;
-}
-
-.project .project-image {
-    width: 100%;
-    margin: 15px 0;
 }
 
 .project .buttons {
@@ -49,13 +62,14 @@
 
 .project .buttons .github:hover {
     background-color: var(--text-color);
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 .project .buttons .demo {
     background-color: var(--accent-color);
-    color: #FFFFFF;
+    color: #ffffff;
     transition: background-color 0.4s;
+    width: 100%;
 }
 
 .project .buttons .demo:hover {

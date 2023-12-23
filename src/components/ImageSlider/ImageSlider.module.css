@@ -1,0 +1,80 @@
+.images {
+    position: relative;
+}
+
+.current-image {
+    z-index: 1;
+    position: relative;
+    box-shadow: 0 0 10px #ebebeb;
+}
+
+.current-image,
+.fade-image {
+    width: 100%;
+    margin: 15px 0;
+}
+
+.fade-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    transition: opacity 0.4s;
+}
+
+.images-slider {
+    position: relative;
+    direction: ltr;
+}
+
+.images-slider .container {
+    /* scroll-snap-type: x mandatory; seems to start scroll bar at the end for some reason. */
+    overflow-x: scroll;
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.images-slider .container::-webkit-scrollbar {
+    display: none;
+}
+
+.images-slider img {
+    width: 40%;
+    scroll-snap-align: start;
+    cursor: pointer;
+}
+
+.images-slider img.active {
+    border: 2px solid var(--text-color);
+}
+
+.images-slider .left-arrow,
+.images-slider .right-arrow {
+    width: 30px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    background-color: #ffffff;
+    box-shadow: 0 0px 30px #ebebeb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15em;
+    opacity: 0;
+    transition: opacity 0.4s;
+    cursor: pointer;
+}
+
+.images-slider:hover .left-arrow,
+.images-slider:hover .right-arrow {
+    opacity: 1;
+}
+
+.images-slider .left-arrow {
+    left: 0;
+}
+
+.images-slider .right-arrow {
+    right: 0;
+}
