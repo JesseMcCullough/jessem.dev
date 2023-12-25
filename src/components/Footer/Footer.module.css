@@ -3,7 +3,7 @@ footer {
     padding: 5px 15px;
     display: flex;
     align-items: center;
-    box-shadow: 0 -5px 5px #ebebeb;
+    box-shadow: 0 -5px 5px var(--box-shadow-color);
 }
 
 footer .container {
