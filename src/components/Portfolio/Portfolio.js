@@ -53,30 +53,37 @@ export default function Portfolio() {
                 </h2>
 
                 <div className={styles.grid}>
-                    <div
-                        className={styles["left-arrow"]}
-                        onClick={() => {
-                            if (currentProject - 1 < 0) {
-                                return;
-                            }
+                    {currentProject > 0 && (
+                        <div
+                            className={styles["left-arrow"]}
+                            onClick={() => {
+                                if (currentProject - 1 < 0) {
+                                    return;
+                                }
 
-                            onClickProject(currentProject - 1);
-                        }}
-                    >
-                        &lt;
-                    </div>
-                    <div
-                        className={styles["right-arrow"]}
-                        onClick={() => {
-                            if (currentProject + 1 >= portfolioData.length) {
-                                return;
-                            }
+                                onClickProject(currentProject - 1);
+                            }}
+                        >
+                            &lt;
+                        </div>
+                    )}
+                    {currentProject < portfolioData.length - 1 && (
+                        <div
+                            className={styles["right-arrow"]}
+                            onClick={() => {
+                                if (
+                                    currentProject + 1 >=
+                                    portfolioData.length
+                                ) {
+                                    return;
+                                }
 
-                            onClickProject(currentProject + 1);
-                        }}
-                    >
-                        &gt;
-                    </div>
+                                onClickProject(currentProject + 1);
+                            }}
+                        >
+                            &gt;
+                        </div>
+                    )}
                     <div className={styles.container} ref={scrollContainer}>
                         {portfolioData.map((project, index) => (
                             <Project
