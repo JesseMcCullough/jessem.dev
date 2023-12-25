@@ -26,18 +26,15 @@
 .skills .grid > div {
     width: 8vw;
     height: 8vw;
-    /* background-color: #ebebeb; */
     background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;
     background-origin: content-box;
-    /* padding: 10px; */
     position: relative;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    transition: top 2s, left 2s, right 2s, bottom 2s, height 2s, width 2s;
 }
 
 .skills .grid > div.fake-box {
@@ -68,12 +65,6 @@
 .skills .stop-transitions {
     transition: none !important;
 }
-
-/* .skills .grid div img {
-    height: 100%;
-    max-width: 100%;
-    max-height: 100%;
-} */
 
 .skills .grid .active {
     grid-column-start: span 3;
