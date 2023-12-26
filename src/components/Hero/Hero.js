@@ -1,5 +1,5 @@
 import styles from "./Hero.module.css";
-import profilePicture from "../../images/profile-picture-crop.jpg";
+import profilePicture from "../../images/profile-picture.jpg";
 
 export default function Hero() {
     return (

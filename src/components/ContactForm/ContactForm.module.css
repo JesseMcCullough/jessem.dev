@@ -1,6 +1,7 @@
 .contact-form {
-    padding: 0 15px;
     padding-bottom: 50px;
+    display: flex;
+    align-items: center;
 }
 
 .contact-form h2 {

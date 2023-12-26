@@ -1,6 +1,4 @@
 .skills {
-    padding: 30px 15px;
-    min-height: calc(100vh);
     display: flex;
     align-items: center;
 }

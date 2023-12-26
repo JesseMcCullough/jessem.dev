@@ -1,8 +1,8 @@
-.hero {
-    padding: 30px 15px;
-    min-height: calc(100vh - 50px);
+section.hero {
+    min-height: calc(100svh - 50px);
     display: flex;
     align-items: center;
+    margin-bottom: 0;
 }
 
 .hero .container {
@@ -40,10 +40,6 @@
     aspect-ratio: 1 / 1;
     animation: pulse 6s ease-in-out infinite;
     max-width: 650px;
-}
-
-.hero h1 {
-    margin-bottom: 25px;
 }
 
 .hero .button {
