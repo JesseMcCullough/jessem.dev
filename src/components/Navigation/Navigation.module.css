@@ -2,6 +2,8 @@ nav {
     padding: 5px 20px;
     height: 50px;
     box-shadow: 0 5px 5px var(--box-shadow-color);
+    position: relative;
+    background-color: #ffffff;
 }
 
 nav .container {
@@ -135,6 +137,10 @@ nav.active .mobile-menu-icon .bar:nth-child(3) {
 }
 
 @media screen and (max-width: 770px) {
+    nav {
+        box-shadow: none;
+    }
+
     nav .mobile-menu-icon {
         display: flex;
     }
@@ -143,16 +149,17 @@ nav.active .mobile-menu-icon .bar:nth-child(3) {
         position: absolute;
         width: 100%;
         background-color: #ffffff;
-        top: 70px;
-        left: -999px;
+        top: -170px;
+        left: 0;
         flex-direction: column;
         box-shadow: 0 5px 5px var(--box-shadow-color);
         padding-bottom: 20px;
-        transition: left 0.4s;
+        transition: top 0.4s;
+        z-index: -1;
     }
 
     nav.active ul {
-        left: 0;
+        top: 50px;
     }
 
     nav ul li {
