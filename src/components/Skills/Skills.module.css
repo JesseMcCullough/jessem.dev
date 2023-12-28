@@ -15,6 +15,10 @@
     flex-shrink: 0;
 }
 
+.skills .grid-wrapper {
+    display: grid;
+}
+
 .skills .grid {
     display: grid;
     gap: 10px;

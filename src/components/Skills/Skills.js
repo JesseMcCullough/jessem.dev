@@ -32,34 +32,36 @@ export default function Skills() {
                         new things.
                     </h2>
                 </div>
-                <div className={styles.grid}>
-                    {logos.map((logo, index) => {
-                        const classes =
-                            index === 0
-                                ? `${styles.active} ${styles.large}`
-                                : "";
+                <div className={styles["grid-wrapper"]}>
+                    <div className={styles.grid}>
+                        {logos.map((logo, index) => {
+                            const classes =
+                                index === 0
+                                    ? `${styles.active} ${styles.large}`
+                                    : "";
 
-                        // there's a more mathematical way to do this, but this is an easy fix for correcting the grid display.
-                        if (index === 4) {
-                            index = 7;
-                        } else if (index === 5) {
-                            index = 6;
-                        } else if (index === 6) {
-                            index = 5;
-                        } else if (index === 7) {
-                            index = 4;
-                        }
+                            // there's a more mathematical way to do this, but this is an easy fix for correcting the grid display.
+                            if (index === 4) {
+                                index = 7;
+                            } else if (index === 5) {
+                                index = 6;
+                            } else if (index === 6) {
+                                index = 5;
+                            } else if (index === 7) {
+                                index = 4;
+                            }
 
-                        return (
-                            <div key={logo.id} className={classes}>
-                                <div
-                                    style={{
-                                        backgroundImage: `url(${logos[index].logo})`,
-                                    }}
-                                ></div>
-                            </div>
-                        );
-                    })}
+                            return (
+                                <div key={logo.id} className={classes}>
+                                    <div
+                                        style={{
+                                            backgroundImage: `url(${logos[index].logo})`,
+                                        }}
+                                    ></div>
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
             </div>
         </section>
