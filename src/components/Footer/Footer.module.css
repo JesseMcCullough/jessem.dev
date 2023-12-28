@@ -1,9 +1,10 @@
 footer {
     background-color: #ffffff;
-    padding: 5px 15px;
+    padding: 5px var(--horizontal-space);
     display: flex;
     align-items: center;
     box-shadow: 0 -5px 5px var(--box-shadow-color);
+    height: 100px;
 }
 
 footer .container {
@@ -11,7 +12,14 @@ footer .container {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    height: 100%;
     position: relative;
+}
+
+footer .logo {
+    height: 100%;
+    position: absolute;
+    top: 0;
 }
 
 footer .footer-text {
@@ -52,7 +60,8 @@ footer .name-container .name {
 footer ul {
     display: flex;
     list-style-type: none;
-    gap: 150px;
+    gap: 100px;
+    margin-left: 200px;
 }
 
 footer ul li a {
@@ -69,10 +78,10 @@ footer .copyright {
     font-size: 0.7em;
     position: absolute;
     bottom: 0;
-    left: 0;
+    right: 0;
 }
 
-@media screen and (max-width: 1110px) {
+/* @media screen and (max-width: 1110px) {
     footer .footer-text,
     footer ul {
         gap: 100px;
@@ -84,16 +93,22 @@ footer .copyright {
     footer ul {
         gap: 50px;
     }
-}
+} */
 
-@media screen and (max-width: 870px) {
+@media screen and (max-width: 770px) {
     footer {
-        padding-top: 20px;
+        padding: 20px 0;
+        height: 100%;
     }
 
     footer .container {
         flex-direction: column;
         gap: 20px;
+    }
+
+    footer .logo {
+        position: relative;
+        height: 100px;
     }
 
     footer .footer-text {
@@ -105,6 +120,11 @@ footer .copyright {
         flex-direction: column;
         gap: 20px;
         align-items: center;
+        margin-left: 0;
+    }
+
+    footer .icons {
+        justify-content: center;
     }
 
     footer .copyright {
