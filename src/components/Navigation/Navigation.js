@@ -12,6 +12,7 @@ export default function Navigation() {
 
     return (
         <nav className={navClasses}>
+            <div className={styles.background}></div>
             <div className={`${styles.container} container`}>
                 <div className={styles.person}>
                     <span className={styles.name}>Jesse McCullough</span>
