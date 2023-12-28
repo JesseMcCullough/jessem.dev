@@ -1,5 +1,5 @@
 nav {
-    padding: 5px 20px;
+    padding: 5px var(--horizontal-space);
     height: 50px;
     box-shadow: 0 5px 5px var(--box-shadow-color);
     position: relative;
@@ -23,6 +23,14 @@ nav .background {
     left: 0;
 }
 
+nav .logo {
+    position: absolute;
+    top: 0;
+    left: var(--horizontal-space);
+    z-index: 1;
+    height: 100%;
+}
+
 nav ul {
     list-style-type: none;
     display: flex;
@@ -33,11 +41,11 @@ nav ul {
 }
 
 nav ul li {
-    margin-right: 150px;
+    margin-right: 50px;
 }
 
 nav ul li:first-of-type {
-    margin-left: 150px;
+    margin-left: 100px;
 }
 
 nav ul li:last-of-type {
@@ -128,26 +136,6 @@ nav.active .mobile-menu-icon .bar:nth-child(3) {
     transform: rotate(45deg) translate(8px, -2px);
 }
 
-@media screen and (max-width: 1110px) {
-    nav ul li {
-        margin-right: 100px;
-    }
-
-    nav ul li:first-of-type {
-        margin-left: 100px;
-    }
-}
-
-@media screen and (max-width: 910px) {
-    nav ul li {
-        margin-right: 50px;
-    }
-
-    nav ul li:first-of-type {
-        margin-left: 50px;
-    }
-}
-
 @media screen and (max-width: 770px) {
     nav {
         box-shadow: none;
@@ -155,6 +143,10 @@ nav.active .mobile-menu-icon .bar:nth-child(3) {
 
     nav .mobile-menu-icon {
         display: flex;
+    }
+
+    nav .container {
+        justify-content: right;
     }
 
     nav ul {
