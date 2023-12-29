@@ -9,11 +9,6 @@ import javaLogo from "../../images/icons/java-logo.png";
 import styles from "./Skills.module.css";
 
 export default function Skills() {
-    // const topRef = useRef();
-    // const bottomRef = useRef();
-    // const activeRef = useRef();
-    // const activeRefContainer = useRef();
-    // const bottomLeftCornerRef = useRef();
     const [logos, setLogos] = useState([
         { id: 1, logo: javascriptLogo },
         { id: 2, logo: reactLogo },
@@ -43,7 +38,18 @@ export default function Skills() {
             container.classList.remove(styles["fake-box"]);
             container.style.backgroundImage = "";
         }
+
+        for (let x = 0; x < boxRefs.current.length; x++) {
+            const box = boxRefs.current[x].current;
+            box.classList.remove(styles["stop-transitions"]);
+        }
+
+        containerRefs.current[0].current.classList.add(styles.large);
     }, [logos]);
+
+    //useInterval(moveBoxes, 4010);
+
+    useEffect(moveBoxes, []);
 
     function moveBoxes() {
         if (isRunning) {
@@ -83,14 +89,9 @@ export default function Skills() {
             resetBoxesPositions();
             console.log("Shifting logos");
             shiftLogos();
-            // setTimeout(() => {
 
-            //     setTimeout(() => {}, 5000);
-            // }, 100);
-
-            containerRefs.current[0].current.classList.add(styles.large);
             setIsRunning(false);
-        }, 3 * 1000);
+        }, 2 * 1000);
     }
 
     // console.log("box refs");
@@ -150,6 +151,7 @@ export default function Skills() {
             container.style.backgroundImage = container.dataset.backgroundImage;
         }
 
+        // Put boxes back to their initial positions
         for (let x = 0; x < boxRefs.current.length; x++) {
             const box = boxRefs.current[x].current;
 
@@ -158,9 +160,9 @@ export default function Skills() {
             box.style.top = 0;
             box.style.left = 0;
 
-            setTimeout(() => {
-                box.classList.remove(styles["stop-transitions"]);
-            }, 1);
+            // setTimeout(() => {
+            //     box.classList.remove(styles["stop-transitions"]);
+            // }, 1);
         }
 
         console.log("DONE RESETTING");
@@ -227,4 +229,21 @@ export default function Skills() {
             </div>
         </section>
     );
+}
+
+function useInterval(callback, delay) {
+    const savedCallback = useRef();
+
+    useEffect(() => {
+        savedCallback.current = callback;
+    });
+
+    useEffect(() => {
+        function tick() {
+            savedCallback.current();
+        }
+
+        let id = setInterval(tick, delay);
+        return () => clearInterval(id);
+    }, [delay]);
 }
