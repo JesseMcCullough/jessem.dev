@@ -21,12 +21,13 @@
     display: grid;
     gap: 10px;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    overflow: hidden;
 }
 
 .skills .grid > div {
     width: 8vw;
     height: 8vw;
-    /* background-color: #ebebeb; */
+    /* background-color: red; */
     background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;
@@ -35,9 +36,8 @@
     position: relative;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    transition: top 2s, left 2s, right 2s, bottom 2s, height 2s, width 2s;
+    transition: top 1.5s, left 1.5s, right 1.5s, bottom 1.5s, height 1.5s,
+        width 1.5s;
 }
 
 .skills .grid > div.fake-box {
@@ -61,7 +61,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    transition: top 2s, left 2s, right 2s, bottom 2s, height 2s, width 2s;
+    transition: top 1.5s, left 1.5s, right 1.5s, bottom 1.5s, height 1.5s,
+        width 1.5s;
     z-index: 1;
 }
 

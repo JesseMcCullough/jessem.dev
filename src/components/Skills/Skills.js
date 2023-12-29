@@ -32,31 +32,68 @@ export default function Skills() {
     );
 
     useLayoutEffect(() => {
-        console.log("Removing fake boxes");
+        console.log("IN LAYOUT EFFECT");
+        removeFakeBoxes();
+        resetBoxesPositions();
+    }, [logos]);
+
+    useEffect(() => {
+        console.log("IN USEEFFECT");
+        console.log("Readding box transitions");
+
+        setTimeout(() => {
+            for (let x = 0; x < boxRefs.current.length; x++) {
+                const box = boxRefs.current[x].current;
+                box.classList.remove(styles["stop-transitions"]);
+            }
+        }, 10); // fixes box growing out of bounds.
+    }, [logos]);
+
+    useInterval(moveBoxes, 3000);
+
+    function removeFakeBoxes() {
         for (let x = 0; x < containerRefs.current.length; x++) {
             const container = containerRefs.current[x].current;
             container.classList.remove(styles["fake-box"]);
             container.style.backgroundImage = "";
         }
+    }
 
+    function resetBoxesPositions() {
+        console.log(
+            "Putting boxes back to their initial positions, stopping transitions"
+        );
+        // Put boxes back to their initial positions
         for (let x = 0; x < boxRefs.current.length; x++) {
             const box = boxRefs.current[x].current;
-            box.classList.remove(styles["stop-transitions"]);
+
+            box.classList.add(styles["stop-transitions"]);
+
+            box.style.top = 0;
+            box.style.left = 0;
         }
+    }
 
-        containerRefs.current[0].current.classList.add(styles.large);
-    }, [logos]);
-
-    //useInterval(moveBoxes, 4010);
-
-    useEffect(moveBoxes, []);
-
+    /**
+     * 1. Moves boxes. Bug free.
+     * 2. Waits 1.5 seconds.
+     * 3. Resets boxes' positions.
+     * 4. Shifts the logos array.
+     *
+     *
+     * @returns
+     */
     function moveBoxes() {
+        console.log("---------------------------------");
+        console.log("Starting new move boxes");
         if (isRunning) {
             return;
         }
 
-        setIsRunning(true);
+        //setIsRunning(true);
+
+        console.log("Moving boxes...");
+
         // Move Box 0 to Box 1 right.
         moveBox(0, 1, "right");
         // Resize Box 0 container.
@@ -82,16 +119,17 @@ export default function Skills() {
 
         // Move Box 7 to Box 0 up.
         moveBox(7, 1, "up");
+        console.log("Boxes moved, waiting for transition");
 
         // Resize Box 0 container.
 
         setTimeout(() => {
-            resetBoxesPositions();
-            console.log("Shifting logos");
+            console.log("Transition ended");
+            addFakeBoxes();
             shiftLogos();
 
-            setIsRunning(false);
-        }, 2 * 1000);
+            // setIsRunning(false);
+        }, 1.5 * 1000);
     }
 
     // console.log("box refs");
@@ -101,16 +139,16 @@ export default function Skills() {
     // console.log(containerRefs);
 
     function shiftLogos() {
+        console.log("Shifting logos");
         const newLogos = [...logos];
 
         const last = newLogos.pop();
         newLogos.unshift(last);
 
-        console.log("NEW LOGOS: " + newLogos);
-
         setLogos(newLogos);
     }
 
+    /* 1. Move boxes. Causes no problem */
     function moveBox(fromBox, toBox, direction) {
         const box1 = boxRefs.current[fromBox].current;
         const box2 = boxRefs.current[toBox].current;
@@ -118,55 +156,62 @@ export default function Skills() {
         const box1Rect = box1.getBoundingClientRect();
         const box2Rect = box2.getBoundingClientRect();
 
+        // NOTE: Commenting out shiftLogos will make the elements "reset" in motion cause distance from box 1 to box 2 is literally 0, which is the starting position.
         if (direction === "right") {
             let distance = box2Rect.left - box1Rect.left;
-            setTimeout(() => (box1.style.left = distance + "px"), 1);
+            box1.style.left = distance + "px";
         }
 
         if (direction === "left") {
             let distance = -(box1Rect.left - box2Rect.left);
-            setTimeout(() => (box1.style.left = distance + "px"), 1);
+            box1.style.left = distance + "px";
         }
 
         if (direction === "up") {
             let distance = box2Rect.top - box1Rect.top;
-            setTimeout(() => (box1.style.top = distance + "px"), 1);
+            box1.style.top = distance + "px";
         }
 
         if (direction === "down") {
             let distance = -(box1Rect.top - box2Rect.top);
-            setTimeout(() => (box1.style.top = distance + "px"), 1);
+            box1.style.top = distance + "px";
         }
     }
 
-    function resetBoxesPositions(callback) {
-        console.log("Resetting boxes");
-        // Use containers as fake boxes.
-
-        console.log(containerRefs);
+    function addFakeBoxes() {
+        console.log("Adding fake boxes");
         for (let x = 0; x < containerRefs.current.length; x++) {
             const container = containerRefs.current[x].current;
-            console.log(container);
+            // console.log(container);
             container.classList.add(styles["fake-box"]);
             container.style.backgroundImage = container.dataset.backgroundImage;
         }
-
-        // Put boxes back to their initial positions
-        for (let x = 0; x < boxRefs.current.length; x++) {
-            const box = boxRefs.current[x].current;
-
-            box.classList.add(styles["stop-transitions"]);
-
-            box.style.top = 0;
-            box.style.left = 0;
-
-            // setTimeout(() => {
-            //     box.classList.remove(styles["stop-transitions"]);
-            // }, 1);
-        }
-
-        console.log("DONE RESETTING");
     }
+
+    // function resetBoxesPositions(callback) {
+    //     // Use containers as fake boxes.
+    //     //console.log(containerRefs);
+    //     for (let x = 0; x < containerRefs.current.length; x++) {
+    //         const container = containerRefs.current[x].current;
+    //         // console.log(container);
+    //         container.classList.add(styles["fake-box"]);
+    //         container.style.backgroundImage = container.dataset.backgroundImage;
+    //     }
+
+    //     // Put boxes back to their initial positions
+    //     for (let x = 0; x < boxRefs.current.length; x++) {
+    //         const box = boxRefs.current[x].current;
+
+    //         box.classList.add(styles["stop-transitions"]);
+
+    //         box.style.top = 0;
+    //         box.style.left = 0;
+
+    //         setTimeout(() => {
+    //             box.classList.remove(styles["stop-transitions"]);
+    //         }, 1);
+    //     }
+    // }
 
     return (
         <section className={styles.skills} id="#skills">
