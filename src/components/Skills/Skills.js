@@ -11,13 +11,13 @@ import styles from "./Skills.module.css";
 export default function Skills() {
     const [logos, setLogos] = useState([
         { id: 1, logo: javascriptLogo },
-        { id: 2, logo: reactLogo },
-        { id: 3, logo: phpLogo },
-        { id: 4, logo: javaLogo },
-        { id: 5, logo: "empty" },
-        { id: 6, logo: mysqlLogo },
-        { id: 7, logo: cssLogo },
-        { id: 8, logo: htmlLogo },
+        { id: 2, logo: "empty" },
+        { id: 3, logo: htmlLogo },
+        { id: 4, logo: cssLogo },
+        { id: 5, logo: mysqlLogo },
+        { id: 6, logo: javaLogo },
+        { id: 7, logo: phpLogo },
+        { id: 8, logo: reactLogo },
     ]);
     const [isRunning, setIsRunning] = useState(false);
     const boxRefs = useRef([]);
@@ -32,24 +32,20 @@ export default function Skills() {
     );
 
     useLayoutEffect(() => {
-        console.log("IN LAYOUT EFFECT");
         removeFakeBoxes();
         resetBoxesPositions();
     }, [logos]);
 
     useEffect(() => {
-        console.log("IN USEEFFECT");
-        console.log("Readding box transitions");
-
         setTimeout(() => {
             for (let x = 0; x < boxRefs.current.length; x++) {
                 const box = boxRefs.current[x].current;
                 box.classList.remove(styles["stop-transitions"]);
             }
-        }, 10); // fixes box growing out of bounds.
+        }, 20); // fixes box growing out of bounds.
     }, [logos]);
 
-    useInterval(moveBoxes, 3000);
+    useInterval(moveBoxes, (1.5 * 2 + 0) * 1000); // (transition-duration * 2 + active-duration) * 1000
 
     function removeFakeBoxes() {
         for (let x = 0; x < containerRefs.current.length; x++) {
@@ -60,39 +56,19 @@ export default function Skills() {
     }
 
     function resetBoxesPositions() {
-        console.log(
-            "Putting boxes back to their initial positions, stopping transitions"
-        );
-        // Put boxes back to their initial positions
         for (let x = 0; x < boxRefs.current.length; x++) {
             const box = boxRefs.current[x].current;
-
             box.classList.add(styles["stop-transitions"]);
-
             box.style.top = 0;
             box.style.left = 0;
         }
     }
 
-    /**
-     * 1. Moves boxes. Bug free.
-     * 2. Waits 1.5 seconds.
-     * 3. Resets boxes' positions.
-     * 4. Shifts the logos array.
-     *
-     *
-     * @returns
-     */
     function moveBoxes() {
-        console.log("---------------------------------");
-        console.log("Starting new move boxes");
         if (isRunning) {
             return;
         }
-
-        //setIsRunning(true);
-
-        console.log("Moving boxes...");
+        setIsRunning(true);
 
         // Move Box 0 to Box 1 right.
         moveBox(0, 1, "right");
@@ -119,27 +95,15 @@ export default function Skills() {
 
         // Move Box 7 to Box 0 up.
         moveBox(7, 1, "up");
-        console.log("Boxes moved, waiting for transition");
-
-        // Resize Box 0 container.
 
         setTimeout(() => {
-            console.log("Transition ended");
             addFakeBoxes();
             shiftLogos();
-
-            // setIsRunning(false);
+            setIsRunning(false);
         }, 1.5 * 1000);
     }
 
-    // console.log("box refs");
-    // console.log(boxRefs);
-
-    // console.log("container refs");
-    // console.log(containerRefs);
-
     function shiftLogos() {
-        console.log("Shifting logos");
         const newLogos = [...logos];
 
         const last = newLogos.pop();
@@ -148,7 +112,6 @@ export default function Skills() {
         setLogos(newLogos);
     }
 
-    /* 1. Move boxes. Causes no problem */
     function moveBox(fromBox, toBox, direction) {
         const box1 = boxRefs.current[fromBox].current;
         const box2 = boxRefs.current[toBox].current;
@@ -179,39 +142,12 @@ export default function Skills() {
     }
 
     function addFakeBoxes() {
-        console.log("Adding fake boxes");
         for (let x = 0; x < containerRefs.current.length; x++) {
             const container = containerRefs.current[x].current;
-            // console.log(container);
             container.classList.add(styles["fake-box"]);
             container.style.backgroundImage = container.dataset.backgroundImage;
         }
     }
-
-    // function resetBoxesPositions(callback) {
-    //     // Use containers as fake boxes.
-    //     //console.log(containerRefs);
-    //     for (let x = 0; x < containerRefs.current.length; x++) {
-    //         const container = containerRefs.current[x].current;
-    //         // console.log(container);
-    //         container.classList.add(styles["fake-box"]);
-    //         container.style.backgroundImage = container.dataset.backgroundImage;
-    //     }
-
-    //     // Put boxes back to their initial positions
-    //     for (let x = 0; x < boxRefs.current.length; x++) {
-    //         const box = boxRefs.current[x].current;
-
-    //         box.classList.add(styles["stop-transitions"]);
-
-    //         box.style.top = 0;
-    //         box.style.left = 0;
-
-    //         setTimeout(() => {
-    //             box.classList.remove(styles["stop-transitions"]);
-    //         }, 1);
-    //     }
-    // }
 
     return (
         <section className={styles.skills} id="#skills">
@@ -226,15 +162,12 @@ export default function Skills() {
                         new things.
                     </h2>
                 </div>
-                <div className={styles.grid} onClick={moveBoxes}>
+                <div className={styles.grid}>
                     {logos.map((logo, index) => {
                         const classes =
                             index === 0
                                 ? `${styles.active} ${styles.large}`
                                 : "";
-                        // console.log("Logos: " + logos);
-                        // console.log("Index: " + index);
-                        // console.log("Logo: " + logo);
 
                         // there's a more mathematical way to do this, but this is an easy fix for correcting the grid display.
                         if (index === 4) {
@@ -246,8 +179,6 @@ export default function Skills() {
                         } else if (index === 7) {
                             index = 4;
                         }
-
-                        // pretty sure changing key to logo.id is the same thing as index since we're changing the order of the array and the newly rendered div still receives a new id.
 
                         let containerIndex = index - 1;
                         if (containerIndex < 0) {
