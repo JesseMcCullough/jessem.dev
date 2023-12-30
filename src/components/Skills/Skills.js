@@ -1,10 +1,10 @@
-import reactLogo from "../../images/icons/react-logo.png";
-import cssLogo from "../../images/icons/css-logo.png";
-import phpLogo from "../../images/icons/php-logo.png";
-import htmlLogo from "../../images/icons/html-logo.png";
-import javascriptLogo from "../../images/icons/javascript-logo.png";
-import mysqlLogo from "../../images/icons/mysql-logo.png";
-import javaLogo from "../../images/icons/java-logo.png";
+import reactLogo from "../../images/skills/react-logo.png";
+import cssLogo from "../../images/skills/css-logo.png";
+import phpLogo from "../../images/skills/php-logo.png";
+import htmlLogo from "../../images/skills/html-logo.png";
+import javascriptLogo from "../../images/skills/javascript-logo.png";
+import mysqlLogo from "../../images/skills/mysql-logo.png";
+import javaLogo from "../../images/skills/java-logo.png";
 import styles from "./Skills.module.css";
 
 export default function Skills() {
