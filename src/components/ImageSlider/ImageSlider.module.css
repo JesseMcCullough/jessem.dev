@@ -43,6 +43,7 @@
     width: 40%;
     scroll-snap-align: start;
     cursor: pointer;
+    border: 2px solid #ffffff;
 }
 
 .images-slider img.active {
