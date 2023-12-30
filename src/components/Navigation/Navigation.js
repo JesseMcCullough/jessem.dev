@@ -23,9 +23,6 @@ export default function Navigation() {
                     <li onClick={onClickMobileMenu}>
                         <a href="#skills">Skills</a>
                     </li>
-                    <li onClick={onClickMobileMenu}>
-                        <a href="#about">About</a>
-                    </li>
                     <li onClick={onClickMobileMenu} className={styles.button}>
                         <a href="#contact">Contact me</a>
                     </li>

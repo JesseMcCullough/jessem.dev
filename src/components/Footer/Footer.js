@@ -15,9 +15,6 @@ export default function Footer() {
                     <li>
                         <a href="#skills">Skills</a>
                     </li>
-                    <li>
-                        <a href="#about">About</a>
-                    </li>
                 </ul>
                 <div className={styles.icons}>
                     <a

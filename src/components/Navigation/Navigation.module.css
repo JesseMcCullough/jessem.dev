@@ -156,7 +156,7 @@ nav.active .mobile-menu-icon .bar:nth-child(3) {
         position: absolute;
         width: 100%;
         background-color: #ffffff;
-        top: -170px;
+        top: -120px;
         left: 0;
         flex-direction: column;
         box-shadow: 0 5px 5px var(--box-shadow-color);
