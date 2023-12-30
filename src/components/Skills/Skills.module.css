@@ -37,6 +37,8 @@
     left: 0;
     transition: top 1.5s, left 1.5s, right 1.5s, bottom 1.5s, height 1.5s,
         width 1.5s;
+    max-width: 155px;
+    max-height: 155px;
 }
 
 .skills .grid > div.fake-box {
@@ -74,6 +76,8 @@
 .skills .grid .active {
     grid-column-start: span 3;
     grid-row-start: span 3;
+    max-width: 480px;
+    max-height: 480px;
 }
 
 .skills .grid .large {

@@ -1,5 +1,5 @@
 section.hero {
-    min-height: calc(100svh - 50px);
+    min-height: min(calc(100svh - 50px), 1000px);
     display: flex;
     align-items: center;
     margin-bottom: 0;

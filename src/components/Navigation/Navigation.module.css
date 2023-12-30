@@ -26,7 +26,6 @@ nav .background {
 nav .logo {
     position: absolute;
     top: 0;
-    left: var(--horizontal-space);
     z-index: 1;
     height: 100%;
 }
@@ -139,6 +138,10 @@ nav.active .mobile-menu-icon .bar:nth-child(3) {
 @media screen and (max-width: 770px) {
     nav {
         box-shadow: none;
+    }
+
+    nav .logo {
+        left: var(--horizontal-space);
     }
 
     nav .mobile-menu-icon {
