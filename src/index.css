@@ -8,6 +8,17 @@
     --title-space: 25px;
 }
 
+:root::before {
+    content: url("images/skills/css-logo.png")
+        url("images/skills/html-logo.png") url("images/skills/java-logo.png")
+        url("images/skills/javascript-logo.png")
+        url("images/skills/mysql-logo.png") url("images/skills/php-logo.png")
+        url("images/skills/react-logo.png");
+    visibility: hidden;
+    position: absolute;
+    left: -999em;
+}
+
 * {
     margin: 0;
     padding: 0;
