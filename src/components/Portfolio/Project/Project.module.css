@@ -15,7 +15,16 @@
 }
 
 .project:last-child {
-    margin-right: 40%;
+    position: relative;
+}
+
+/* Safari fix for margin-right not applying. */
+.project:last-child::after {
+    position: absolute;
+    content: "";
+    left: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 @media screen and (max-width: 1300px) {
