@@ -83,9 +83,9 @@
 }
 
 .images-slider .left-arrow {
-    left: 0;
+    left: -1px;
 }
 
 .images-slider .right-arrow {
-    right: 0;
+    right: -1px;
 }
