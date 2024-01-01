@@ -1,9 +1,37 @@
 .project {
-    background-color: #FCFCFC;
+    background-color: #ffffff;
     padding: 15px;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
+    box-shadow: 0 0 30px var(--box-shadow-color);
+    width: 40%;
+    max-width: 760px;
+    flex-shrink: 0;
+    scroll-snap-align: center;
+}
+
+.project:first-child {
+    margin-left: 100%;
+}
+
+.project:last-child {
+    position: relative;
+}
+
+/* Safari fix for margin-right not applying. */
+.project:last-child::after {
+    position: absolute;
+    content: "";
+    left: 100%;
+    width: 1000%;
+    height: 100%;
+}
+
+@media screen and (max-width: 1300px) {
+    .project {
+        width: 80%;
+    }
 }
 
 .project p {
@@ -19,11 +47,6 @@
     width: auto;
     margin-right: 10px;
     margin-bottom: 15px;
-}
-
-.project .project-image {
-    width: 100%;
-    margin: 15px 0;
 }
 
 .project .buttons {
@@ -49,13 +72,14 @@
 
 .project .buttons .github:hover {
     background-color: var(--text-color);
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 .project .buttons .demo {
     background-color: var(--accent-color);
-    color: #FFFFFF;
+    color: #ffffff;
     transition: background-color 0.4s;
+    width: 100%;
 }
 
 .project .buttons .demo:hover {

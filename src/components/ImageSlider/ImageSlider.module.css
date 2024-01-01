@@ -1,0 +1,91 @@
+.images {
+    position: relative;
+}
+
+.current-image {
+    z-index: 1;
+    position: relative;
+    box-shadow: 0 0 10px var(--box-shadow-color);
+}
+
+.current-image,
+.fade-image {
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 12px; /* 15px - 3px padding */
+}
+
+.fade-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    transition: opacity 0.4s;
+}
+
+.images-slider {
+    position: relative;
+    direction: ltr;
+}
+
+.images-slider .container {
+    overflow-x: scroll;
+    display: flex;
+    gap: 15px;
+    margin-bottom: 12px; /* 15px - 3px padding */
+    padding: 3px 0;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.images-slider .container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.images-slider .container {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.images-slider img {
+    width: 40%;
+    scroll-snap-align: start;
+    cursor: pointer;
+    border: 2px solid #ffffff;
+    box-shadow: 0 0 10px var(--box-shadow-color);
+    flex-shrink: 0;
+}
+
+.images-slider img.active {
+    border: 2px solid var(--text-color);
+}
+
+.images-slider .left-arrow,
+.images-slider .right-arrow {
+    width: 30px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    background-color: #ffffff;
+    box-shadow: 0 0 30px var(--box-shadow-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15em;
+    opacity: 0;
+    transition: opacity 0.4s;
+    cursor: pointer;
+}
+
+.images-slider:hover .left-arrow,
+.images-slider:hover .right-arrow {
+    opacity: 1;
+}
+
+.images-slider .left-arrow {
+    left: 0;
+}
+
+.images-slider .right-arrow {
+    right: 0;
+}

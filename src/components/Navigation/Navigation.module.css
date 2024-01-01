@@ -1,12 +1,33 @@
 nav {
-    padding: 15px;
-    height: 70px;
-    box-shadow: 0 5px 5px #EBEBEB;
+    padding: 5px var(--horizontal-space);
+    height: 50px;
+    box-shadow: 0 5px 5px var(--box-shadow-color);
+    position: relative;
+    background-color: #ffffff;
 }
 
 nav .container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+nav .background {
+    background-color: #ffffff;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+nav .logo {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    height: 100%;
 }
 
 nav ul {
@@ -14,14 +35,21 @@ nav ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+    z-index: 1;
 }
 
 nav ul li {
-    margin-right: 70px;
+    margin-right: 50px;
+}
+
+nav ul li:first-of-type {
+    margin-left: 100px;
 }
 
 nav ul li:last-of-type {
     margin-right: 0;
+    margin-left: auto;
 }
 
 nav ul li a {
@@ -42,19 +70,21 @@ nav ul .button a {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #FFFFFF;
+    color: #ffffff;
     transition: background-color 0.4s;
 }
 
 nav ul .button:hover a {
-    color: #FFFFFF;
+    color: #ffffff;
     background-color: var(--accent-hover-color);
 }
 
 nav .person {
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
     align-items: center;
+    z-index: 1;
 }
 
 nav .name {
@@ -67,69 +97,86 @@ nav .mobile-menu-icon {
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
-	cursor: pointer;
+    cursor: pointer;
     z-index: 4;
 }
 
 nav .mobile-menu-icon .bar {
-	width: 30px;
-	height: 3px;
-	background-color: var(--text-color);
-	transition: transform 0.4s, background-color 0.4s;
+    width: 30px;
+    height: 3px;
+    background-color: var(--text-color);
+    transition: transform 0.4s, background-color 0.4s;
     border-radius: 10px;
 }
 
 nav .mobile-menu-icon:hover .bar {
-	background-color: var(--accent-color);
+    background-color: var(--accent-color);
 }
 
 nav.active .mobile-menu-icon {
-	position: relative;
-	right: 4px;
+    position: relative;
+    right: 4px;
     top: -4px;
 }
 
 nav .mobile-menu-icon .bar:nth-child(2) {
-	margin: 5px 0;
+    margin: 5px 0;
 }
 
 nav.active .mobile-menu-icon .bar:nth-child(1) {
-	transform: rotate(-45deg) translate(0, 10px);
+    transform: rotate(-45deg) translate(0, 10px);
 }
 
 nav.active .mobile-menu-icon .bar:nth-child(2) {
-	display: none;
+    display: none;
 }
 
 nav.active .mobile-menu-icon .bar:nth-child(3) {
-	transform: rotate(45deg) translate(8px, -2px);
+    transform: rotate(45deg) translate(8px, -2px);
 }
 
 @media screen and (max-width: 770px) {
+    nav {
+        box-shadow: none;
+    }
+
+    nav .logo {
+        left: var(--horizontal-space);
+    }
+
     nav .mobile-menu-icon {
         display: flex;
+    }
+
+    nav .container {
+        justify-content: right;
     }
 
     nav ul {
         position: absolute;
         width: 100%;
-        background-color: #FFFFFF;
-        top: 70px;
-        left: -999px;
+        background-color: #ffffff;
+        top: -120px;
+        left: 0;
         flex-direction: column;
-        box-shadow: 0 5px 5px #EBEBEB;
+        box-shadow: 0 5px 5px var(--box-shadow-color);
         padding-bottom: 20px;
-        transition: left 0.4s;
+        transition: top 0.4s;
+        z-index: 0;
     }
 
     nav.active ul {
-        left: 0;
+        top: 50px;
     }
 
     nav ul li {
         height: 50px;
         margin: 0;
         width: 100%;
+    }
+
+    nav ul li:first-of-type {
+        margin-left: 0;
     }
 
     nav ul li a {
@@ -148,5 +195,6 @@ nav.active .mobile-menu-icon .bar:nth-child(3) {
 
     nav ul .button a {
         width: calc(100% - 30px);
+        height: 100%;
     }
 }
