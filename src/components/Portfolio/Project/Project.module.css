@@ -6,12 +6,13 @@
     flex-direction: column;
     box-shadow: 0 0 30px var(--box-shadow-color);
     width: 40%;
+    max-width: 760px;
     flex-shrink: 0;
     scroll-snap-align: center;
 }
 
 .project:first-child {
-    margin-left: 40%;
+    margin-left: 100%;
 }
 
 .project:last-child {
@@ -23,7 +24,7 @@
     position: absolute;
     content: "";
     left: 100%;
-    width: 100%;
+    width: 1000%;
     height: 100%;
 }
 

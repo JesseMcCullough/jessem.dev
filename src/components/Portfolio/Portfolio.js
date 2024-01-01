@@ -21,13 +21,22 @@ export default function Portfolio() {
 
         setCurrentProject(index);
 
-        const projectWidth = projectsRef.current[0].current.offsetWidth;
-        let scrollBy = scrollContainer.current.scrollLeft;
+        const project0 = projectsRef.current[0].current;
+        const project1 = projectsRef.current[1].current;
 
+        const project0Rect = project0.getBoundingClientRect();
+        const project1Rect = project1.getBoundingClientRect();
+
+        const projectWidth = project0.offsetWidth;
+        const projectGap = Math.abs(project0Rect.right - project1Rect.left);
+
+        const indexDifference = Math.abs(index - previousProject);
+
+        let scrollBy = scrollContainer.current.scrollLeft;
         if (previousProject > index) {
-            scrollBy -= projectWidth;
+            scrollBy -= (projectWidth + projectGap) * indexDifference;
         } else {
-            scrollBy += projectWidth;
+            scrollBy += (projectWidth + projectGap) * indexDifference;
         }
 
         scrollContainer.current.scrollTo({
@@ -51,54 +60,51 @@ export default function Portfolio() {
                     <br />
                     and <span className="highlight">REST APIs</span>.
                 </h2>
+            </div>
 
-                <div className={styles.grid}>
-                    {currentProject > 0 && (
-                        <div
-                            className={styles["left-arrow"]}
-                            onClick={() => {
-                                if (currentProject - 1 < 0) {
-                                    return;
-                                }
+            <div className={styles.grid}>
+                {currentProject > 0 && (
+                    <div
+                        className={styles["left-arrow"]}
+                        onClick={() => {
+                            if (currentProject - 1 < 0) {
+                                return;
+                            }
 
-                                onClickProject(currentProject - 1);
-                            }}
-                        >
-                            &lt;
-                        </div>
-                    )}
-                    {currentProject < portfolioData.length - 1 && (
-                        <div
-                            className={styles["right-arrow"]}
-                            onClick={() => {
-                                if (
-                                    currentProject + 1 >=
-                                    portfolioData.length
-                                ) {
-                                    return;
-                                }
-
-                                onClickProject(currentProject + 1);
-                            }}
-                        >
-                            &gt;
-                        </div>
-                    )}
-                    <div className={styles.container} ref={scrollContainer}>
-                        {portfolioData.map((project, index) => (
-                            <Project
-                                key={index}
-                                name={project.name}
-                                technologyImages={project.technologyImages}
-                                projectImages={project.projectImages}
-                                description={project.description}
-                                githubLink={project.githubLink}
-                                demoLink={project.demoLink}
-                                ref={projectsRef.current[index]}
-                                onClick={() => onClickProject(index)}
-                            />
-                        ))}
+                            onClickProject(currentProject - 1);
+                        }}
+                    >
+                        &lt;
                     </div>
+                )}
+                {currentProject < portfolioData.length - 1 && (
+                    <div
+                        className={styles["right-arrow"]}
+                        onClick={() => {
+                            if (currentProject + 1 >= portfolioData.length) {
+                                return;
+                            }
+
+                            onClickProject(currentProject + 1);
+                        }}
+                    >
+                        &gt;
+                    </div>
+                )}
+                <div className={styles.container} ref={scrollContainer}>
+                    {portfolioData.map((project, index) => (
+                        <Project
+                            key={index}
+                            name={project.name}
+                            technologyImages={project.technologyImages}
+                            projectImages={project.projectImages}
+                            description={project.description}
+                            githubLink={project.githubLink}
+                            demoLink={project.demoLink}
+                            ref={projectsRef.current[index]}
+                            onClick={() => onClickProject(index)}
+                        />
+                    ))}
                 </div>
             </div>
         </section>
