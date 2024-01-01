@@ -7,6 +7,7 @@ export default function ImageSlider({ projectImages }) {
     const imagesRef = useRef([]);
     const fadeImageRef = useRef();
     const currentImageRef = useRef();
+    const scrollContainer = useRef();
 
     imagesRef.current = projectImages.map(
         (_, index) => imagesRef.current[index] ?? createRef()
@@ -16,6 +17,8 @@ export default function ImageSlider({ projectImages }) {
         if (index === currentImage) {
             return;
         }
+
+        const previousImage = currentImage;
 
         setFadeImage(currentImage);
         setCurrentImage(index);
@@ -31,11 +34,19 @@ export default function ImageSlider({ projectImages }) {
             }, 1);
         }, 0.4 * 1000);
 
-        // consider switching to scrollTo() so that scroll-snap-type can be reenabled?
-        imagesRef.current[index].current.scrollIntoView({
+        const imageWidth = imagesRef.current[0].current.offsetWidth;
+        let scrollBy = scrollContainer.current.scrollLeft;
+
+        if (previousImage > index) {
+            scrollBy -= imageWidth;
+        } else {
+            scrollBy += imageWidth;
+        }
+
+        scrollContainer.current.scrollTo({
+            top: 0,
+            left: scrollBy,
             behavior: "smooth",
-            block: "nearest",
-            inline: "nearest",
         });
     }
 
@@ -56,7 +67,7 @@ export default function ImageSlider({ projectImages }) {
             />
 
             <div className={styles["images-slider"]}>
-                <div className={styles["container"]}>
+                <div className={styles["container"]} ref={scrollContainer}>
                     {currentImage > 0 && (
                         <div
                             className={styles["left-arrow"]}
@@ -88,28 +99,18 @@ export default function ImageSlider({ projectImages }) {
                     )}
 
                     {projectImages.map((image, index) => {
-                        if (index === currentImage) {
-                            return (
-                                <img
-                                    key={index}
-                                    src={image}
-                                    alt=""
-                                    onClick={() => onClickImage(index)}
-                                    ref={imagesRef.current[index]}
-                                    className={styles.active}
-                                />
-                            );
-                        } else {
-                            return (
-                                <img
-                                    key={index}
-                                    src={image}
-                                    alt=""
-                                    onClick={() => onClickImage(index)}
-                                    ref={imagesRef.current[index]}
-                                />
-                            );
-                        }
+                        const classes =
+                            index === currentImage ? styles.active : "";
+                        return (
+                            <img
+                                key={index}
+                                src={image}
+                                alt=""
+                                onClick={() => onClickImage(index)}
+                                ref={imagesRef.current[index]}
+                                className={classes}
+                            />
+                        );
                     })}
                 </div>
             </div>
