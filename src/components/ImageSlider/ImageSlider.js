@@ -34,13 +34,22 @@ export default function ImageSlider({ projectImages }) {
             }, 1);
         }, 0.4 * 1000);
 
-        const imageWidth = imagesRef.current[0].current.offsetWidth;
-        let scrollBy = scrollContainer.current.scrollLeft;
+        const image0 = imagesRef.current[0].current;
+        const image1 = imagesRef.current[1].current;
 
+        const image0Rect = image0.getBoundingClientRect();
+        const image1Rect = image1.getBoundingClientRect();
+
+        const imageWidth = image0.offsetWidth;
+        const imageGap = Math.abs(image0Rect.right - image1Rect.left);
+
+        const indexDifference = Math.abs(index - previousImage);
+
+        let scrollBy = scrollContainer.current.scrollLeft;
         if (previousImage > index) {
-            scrollBy -= imageWidth;
+            scrollBy -= (imageWidth + imageGap) * indexDifference;
         } else {
-            scrollBy += imageWidth;
+            scrollBy += (imageWidth + imageGap) * indexDifference;
         }
 
         scrollContainer.current.scrollTo({
