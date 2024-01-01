@@ -92,19 +92,25 @@ export default function Portfolio() {
                     </div>
                 )}
                 <div className={styles.container} ref={scrollContainer}>
-                    {portfolioData.map((project, index) => (
-                        <Project
-                            key={index}
-                            name={project.name}
-                            technologyImages={project.technologyImages}
-                            projectImages={project.projectImages}
-                            description={project.description}
-                            githubLink={project.githubLink}
-                            demoLink={project.demoLink}
-                            ref={projectsRef.current[index]}
-                            onClick={() => onClickProject(index)}
-                        />
-                    ))}
+                    {portfolioData.map((project, index) => {
+                        const onClick =
+                            window.innerWidth > 1100
+                                ? () => onClickProject(index)
+                                : () => "";
+                        return (
+                            <Project
+                                key={index}
+                                name={project.name}
+                                technologyImages={project.technologyImages}
+                                projectImages={project.projectImages}
+                                description={project.description}
+                                githubLink={project.githubLink}
+                                demoLink={project.demoLink}
+                                ref={projectsRef.current[index]}
+                                onClick={onClick}
+                            />
+                        );
+                    })}
                 </div>
             </div>
         </section>
