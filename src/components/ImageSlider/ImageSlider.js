@@ -18,8 +18,6 @@ export default function ImageSlider({ projectImages }) {
             return;
         }
 
-        const previousImage = currentImage;
-
         setFadeImage(currentImage);
         setCurrentImage(index);
 
@@ -43,14 +41,8 @@ export default function ImageSlider({ projectImages }) {
         const imageWidth = image0.offsetWidth;
         const imageGap = Math.abs(image0Rect.right - image1Rect.left);
 
-        const indexDifference = Math.abs(index - previousImage);
-
-        let scrollBy = scrollContainer.current.scrollLeft;
-        if (previousImage > index) {
-            scrollBy -= (imageWidth + imageGap) * indexDifference;
-        } else {
-            scrollBy += (imageWidth + imageGap) * indexDifference;
-        }
+        let scrollBy = 0;
+        scrollBy += (imageWidth + imageGap) * index;
 
         scrollContainer.current.scrollTo({
             top: 0,
