@@ -58,8 +58,10 @@ a:hover {
     color: var(--accent-hover-color);
 }
 
-.highlight {
+.highlight,
+strong {
     color: var(--accent-color);
+    font-weight: normal;
 }
 
 .container {

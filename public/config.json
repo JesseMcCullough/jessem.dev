@@ -2,8 +2,6 @@
     "mail": {
         "name": "JesseM.dev",
         "address": "no-reply@jessem.dev",
-        "to": [
-            {"name": "Jesse McCullough", "address": "hello@jessem.dev"}
-        ]
+        "to": [{ "name": "Jesse McCullough", "address": "hello@jessem.dev" }]
     }
 }
