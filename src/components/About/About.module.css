@@ -1,3 +1,53 @@
+.about {
+    position: relative;
+}
+
+.about.shorten {
+    height: 125vh;
+    overflow: hidden;
+}
+
+.about .shortener {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 20vh;
+    background: linear-gradient(
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.5) 20%,
+        rgba(255, 255, 255, 1) 100%
+    );
+    width: 100%;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.about .shortener .button {
+    display: block;
+    width: 300px;
+    background-color: var(--accent-color);
+    color: #ffffff;
+    transition: background-color 0.4s;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 100px;
+    text-decoration: none;
+    font-size: 1.125em;
+    outline: none;
+    margin: 0 auto;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.about .shortener .button:hover {
+    background-color: var(--accent-hover-color);
+}
+
 .about h2 {
     text-align: center;
 }
@@ -10,7 +60,7 @@
     flex-direction: row-reverse;
 }
 
-.about .entry:nth-child(odd) {
+.about .entry:nth-child(even) {
     margin: var(--vertical-space) 0;
 }
 
