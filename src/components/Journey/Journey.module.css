@@ -1,13 +1,13 @@
-.about {
+.journey {
     position: relative;
 }
 
-.about.shorten {
+.journey.shorten {
     height: 125vh;
     overflow: hidden;
 }
 
-.about .shortener {
+.journey .shortener {
     position: absolute;
     left: 0;
     bottom: 0;
@@ -24,7 +24,7 @@
     align-items: flex-end;
 }
 
-.about .shortener .button {
+.journey .shortener .button {
     display: block;
     width: 300px;
     background-color: var(--accent-color);
@@ -44,15 +44,15 @@
     cursor: pointer;
 }
 
-.about .shortener .button:hover {
+.journey .shortener .button:hover {
     background-color: var(--accent-hover-color);
 }
 
-.about h2 {
+.journey h2 {
     text-align: center;
 }
 
-.about .entry {
+.journey .entry {
     display: flex;
     justify-content: center;
     align-items: stretch;
@@ -60,31 +60,36 @@
     flex-direction: row-reverse;
 }
 
-.about .entry:nth-child(even) {
+.journey .entry:nth-child(even) {
     margin: 50px 0;
 }
 
-.about .box {
+.journey .box {
     padding: 30px;
     box-shadow: 0 0 30px var(--box-shadow-color);
+    width: 100%;
     max-width: 600px;
     align-self: flex-end;
     position: relative;
     border-radius: 15px;
 }
 
-.about .box h3 {
-    margin-bottom: 15px;
+.journey .box h3 {
+    margin-bottom: 0;
     color: var(--accent-color);
 }
 
-.about .box img {
+.journey .box img {
     width: 100%;
     box-shadow: 0 0 10px var(--box-shadow-color);
-    margin-bottom: 15px;
+    margin-top: 15px;
 }
 
-.about .timeline {
+.journey .box p {
+    margin-top: 15px;
+}
+
+.journey .timeline {
     position: relative;
     display: flex;
     justify-content: center;
@@ -92,7 +97,7 @@
     flex-shrink: 0;
 }
 
-.about .timeline .line {
+.journey .timeline .line {
     width: 5px;
     height: calc(100% + 50px);
     background-color: #e9e9e9;
@@ -102,17 +107,17 @@
     z-index: -1;
 }
 
-.about .entry:first-of-type .timeline .line {
+.journey .entry:first-of-type .timeline .line {
     height: 50%;
 }
 
-.about .entry:last-of-type .timeline .line {
-    height: 60%;
+.journey .entry:last-of-type .timeline .line {
+    height: calc(50% + 50px);
     bottom: unset;
     top: -50px;
 }
 
-.about .timeline .date {
+.journey .timeline .date {
     background-color: #ffffff;
     border: 5px solid #e9e9e9;
     padding: 10px 15px;
@@ -126,6 +131,6 @@
     flex-direction: column;
 }
 
-.about .timeline .year {
+.journey .timeline .year {
     font-size: 0.8em;
 }
