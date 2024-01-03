@@ -7,8 +7,8 @@ export default function About() {
     const [isFullyVisible, setIsFullyVisible] = useState(false);
     const sectionClasses =
         isFullyVisible || journeyData.length < 4
-            ? styles.about
-            : `${styles.about} ${styles.shorten}`;
+            ? styles.journey
+            : `${styles.journey} ${styles.shorten}`;
 
     function onClick() {
         if (isFullyVisible) {
