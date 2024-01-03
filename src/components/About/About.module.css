@@ -61,7 +61,7 @@
 }
 
 .about .entry:nth-child(even) {
-    margin: var(--vertical-space) 0;
+    margin: 50px 0;
 }
 
 .about .box {
@@ -94,7 +94,7 @@
 
 .about .timeline .line {
     width: 5px;
-    height: calc(100% + var(--vertical-space));
+    height: calc(100% + 50px);
     background-color: #e9e9e9;
     position: absolute;
     left: 50%;
@@ -106,8 +106,14 @@
     height: 50%;
 }
 
-.about .timeline .month {
-    background-color: white;
+.about .entry:last-of-type .timeline .line {
+    height: 60%;
+    bottom: unset;
+    top: -50px;
+}
+
+.about .timeline .date {
+    background-color: #ffffff;
     border: 5px solid #e9e9e9;
     padding: 10px 15px;
     color: var(--text-color);

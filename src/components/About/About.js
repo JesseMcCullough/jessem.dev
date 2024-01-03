@@ -54,9 +54,10 @@ export default function About() {
                         </div>
                         <div className={styles.timeline}>
                             <div className={styles.line}></div>
-                            <span className={styles.month}>
-                                Dec<span className={styles.year}>2023</span>
-                            </span>
+                            <div className={styles.date}>
+                                <span className={styles.month}>Dec</span>
+                                <span className={styles.year}>2023</span>
+                            </div>
                         </div>
                     </div>
                     <div className={styles.entry}>
@@ -78,9 +79,10 @@ export default function About() {
                         </div>
                         <div className={styles.timeline}>
                             <div className={styles.line}></div>
-                            <span className={styles.month}>
-                                Dec<span className={styles.year}>2023</span>
-                            </span>
+                            <div className={styles.date}>
+                                <span className={styles.month}>Dec</span>
+                                <span className={styles.year}>2023</span>
+                            </div>
                         </div>
                     </div>
                     <div className={styles.entry}>
@@ -102,9 +104,10 @@ export default function About() {
                         </div>
                         <div className={styles.timeline}>
                             <div className={styles.line}></div>
-                            <span className={styles.month}>
-                                Dec<span className={styles.year}>2023</span>
-                            </span>
+                            <div className={styles.date}>
+                                <span className={styles.month}>Dec</span>
+                                <span className={styles.year}>2023</span>
+                            </div>
                         </div>
                     </div>
                 </div>
