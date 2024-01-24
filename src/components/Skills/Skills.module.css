@@ -35,8 +35,8 @@
     position: relative;
     top: 0;
     left: 0;
-    transition: top 1.5s, left 1.5s, right 1.5s, bottom 1.5s, height 1.5s,
-        width 1.5s;
+    /* transition: top 1.5s, left 1.5s, right 1.5s, bottom 1.5s, height 1.5s,
+        width 1.5s; */
     max-width: 155px;
     max-height: 155px;
 }
@@ -62,8 +62,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    transition: top 1.5s, left 1.5s, right 1.5s, bottom 1.5s, height 1.5s,
-        width 1.5s;
+    /* transition: top 1.5s, left 1.5s, right 1.5s, bottom 1.5s, height 1.5s,
+        width 1.5s; */
     z-index: 1;
     box-shadow: 0 0 30px var(--box-shadow-color);
     border-radius: 10px;
