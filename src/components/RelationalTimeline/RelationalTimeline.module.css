@@ -1,0 +1,228 @@
+.filter-highlights {
+    position: absolute;
+    top: -30px;
+    right: 0;
+    cursor: pointer;
+    font-size: 0.9em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.events {
+    padding-right: 75px;
+    transition: padding-right 0.4s;
+}
+
+.event {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 25px;
+    flex-direction: row-reverse;
+    position: relative;
+}
+
+.event:nth-child(even) {
+    margin: 50px 0;
+}
+
+.event:last-of-type {
+    margin-bottom: 0;
+}
+
+.event .date {
+    color: #b0b0b0;
+}
+
+.box {
+    padding: 30px;
+    box-shadow: 0 0 30px var(--box-shadow-color);
+    width: 100%;
+    max-width: 600px;
+    align-self: flex-end;
+    position: relative;
+    border-radius: 15px;
+    z-index: 998;
+}
+
+.box h3 {
+    margin-bottom: 0;
+    font-size: 1.75em;
+}
+
+.box > img {
+    width: 100%;
+    box-shadow: 0 0 10px var(--box-shadow-color);
+    margin-top: 15px;
+}
+
+.box p {
+    margin-top: 15px;
+}
+
+.timeline {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.timeline .line {
+    width: 5px;
+    height: calc(100% + 50px);
+    background-color: #e9e9e9;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    z-index: -1;
+}
+
+.event:first-of-type .timeline .line {
+    height: 50%;
+}
+
+.event:last-of-type .timeline .line {
+    height: calc(50% + 50px);
+    bottom: unset;
+    top: -50px;
+}
+
+.timeline .date {
+    background-color: #ffffff;
+    border: 5px solid #e9e9e9;
+    padding: 10px 15px;
+    color: var(--text-color);
+    font-size: 1.125em;
+    height: 60px;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 15px;
+}
+
+.timeline .year {
+    font-size: 0.8em;
+}
+
+.small-text {
+    font-size: 0.6em;
+    position: relative;
+    top: -4px;
+}
+
+.event.highlight .box {
+    box-shadow: 0 0 5px var(--accent-color);
+}
+
+.highlight-label {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    position: absolute;
+    top: 8px;
+    right: 13px;
+}
+
+.highlight-label img {
+    width: 16px;
+    box-shadow: none;
+    margin: 0;
+}
+
+.highlight-label span {
+    color: var(--accent-color);
+    font-weight: bold;
+    font-size: 0.8em;
+}
+
+.event .box > .line {
+    position: absolute;
+    top: calc(50% - 2px);
+    right: -50px;
+    width: 50px;
+    border: 3px solid #e7e7e7;
+    border-left: none;
+    border-top-right-radius: 70px;
+    border-bottom-right-radius: 70px;
+}
+
+.event .box > .line[data-indent="1"],
+.event .box > .line[data-indent="5"],
+.event .box > .line[data-indent="9"] {
+    border-color: #f4b9b9;
+    border-color: #c7efcc;
+}
+
+.event .box > .line[data-indent="2"],
+.event .box > .line[data-indent="6"],
+.event .box > .line[data-indent="10"] {
+    border-color: #b6d7ff;
+    border-color: #ffedbc;
+}
+
+.event .box > .line[data-indent="3"],
+.event .box > .line[data-indent="7"],
+.event .box > .line[data-indent="11"] {
+    border-color: #c7efcc;
+    border-color: #f4b9b9;
+}
+
+.event .box > .line[data-indent="4"],
+.event .box > .line[data-indent="8"],
+.event .box > .line[data-indent="12"] {
+    border-color: #ffedbc;
+    border-color: #b6d7ff;
+}
+
+@media screen and (max-width: 770px) {
+    .event {
+        flex-direction: column-reverse;
+        gap: 15px;
+    }
+
+    .timeline .date {
+        font-size: 1em;
+    }
+
+    .timeline .line,
+    .event:last-of-type .timeline .line {
+        height: calc(
+            100% + 15px + 40px
+        ); /* 100% of date box, plus event gap, plus event margin */
+        bottom: -15px; /* event gap */
+        top: unset;
+    }
+
+    .event:nth-child(even) {
+        margin: 40px 0;
+    }
+
+    .event:last-of-type {
+        margin-bottom: 0;
+    }
+
+    .event .box {
+        max-width: unset;
+    }
+
+    .filter-highlights {
+        top: -105px;
+        left: 0;
+        right: unset;
+    }
+
+    .events.filtered {
+        padding-right: 0;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .box h3 {
+        font-size: 1.5em;
+    }
+}
