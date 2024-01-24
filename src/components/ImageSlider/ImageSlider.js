@@ -1,7 +1,7 @@
 import { useState, useRef, createRef } from "react";
 import styles from "./ImageSlider.module.css";
 
-export default function ImageSlider({ projectImages }) {
+export default function ImageSlider({ projectImages, classNames }) {
     const [currentImage, setCurrentImage] = useState(0);
     const [fadeImage, setFadeImage] = useState(0);
     const imagesRef = useRef([]);
@@ -101,7 +101,9 @@ export default function ImageSlider({ projectImages }) {
 
                     {projectImages.map((image, index) => {
                         const classes =
-                            index === currentImage ? styles.active : "";
+                            index === currentImage
+                                ? `${styles.active} ${classNames?.active}`
+                                : "";
                         return (
                             <img
                                 key={index}
