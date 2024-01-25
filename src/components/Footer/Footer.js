@@ -15,6 +15,9 @@ export default function Footer() {
                     <li>
                         <a href="#skills">Skills</a>
                     </li>
+                    <li>
+                        <a href="#journey">Journey</a>
+                    </li>
                 </ul>
                 <div className={styles.icons}>
                     <a
@@ -33,7 +36,7 @@ export default function Footer() {
                     </a>
                 </div>
                 <p className={styles.copyright}>
-                    Copyright &copy; 2023 Jesse McCullough. All Rights Reserved.
+                    Copyright &copy; 2024 Jesse McCullough. All Rights Reserved.
                 </p>
             </div>
         </footer>
