@@ -46,9 +46,10 @@ export default function Journey() {
                     </div>
                 )}
                 <h2>
-                    My unique journey in <br />
+                    My journey in{" "}
                     <span className="highlight">
-                        becoming a software engineer
+                        becoming
+                        <br />a software engineer
                     </span>
                     .
                 </h2>
