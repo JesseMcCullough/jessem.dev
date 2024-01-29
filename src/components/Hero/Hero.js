@@ -1,11 +1,13 @@
 import styles from "./Hero.module.css";
 import profilePicture from "../../images/profile-picture.jpg";
 import Markdown from "react-markdown";
-import useFetch from "../../hooks/useFetch";
+import { useStrapi, getStrapiUrl } from "../../hooks/useStrapi";
+import Button from "../Button/Button";
+// import getStrapiUrl from "../../hooks/useStrapi";
 
 export default function Hero() {
-    const { loading, error, data } = useFetch(
-        "/api/home?populate[hero][populate][0]=image"
+    const { loading, error, data } = useStrapi(
+        "/home?populate[hero][populate][0]=image&populate[hero][populate][1]=button"
     );
 
     if (loading) return;
@@ -13,8 +15,12 @@ export default function Hero() {
 
     const hero = data.data.attributes.hero;
     const title = hero.title;
-    const image = hero.image.data.attributes.url;
-    const button = hero.button;
+    const imageUrl = hero.image.data.attributes.url;
+    const buttonText = hero.button.text;
+    const buttonUrl = hero.button.url;
+    const buttonOpenNewTab = hero.button.openNewTab;
+
+    let buttonTarget = buttonOpenNewTab ? "_blank" : "";
 
     return (
         <section className={styles.hero} id="#about">
@@ -26,12 +32,17 @@ export default function Hero() {
                         className={styles["mobile-profile-picture"]}
                         alt=""
                     />
-                    <a className={styles.button} href="#contact">
-                        {button}
-                    </a>
+                    {/* <a
+                        className={styles.button}
+                        href={buttonUrl}
+                        target={buttonTarget}
+                    >
+                        {buttonText}
+                    </a> */}
+                    <Button data={hero.button} className={styles.button} />
                 </div>
                 <div className={styles.image}>
-                    <img src={`http://localhost:1337${image}`} alt="" />
+                    <img src={getStrapiUrl(imageUrl)} alt="" />
                 </div>
             </div>
         </section>
