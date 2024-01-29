@@ -1,4 +1,6 @@
 import { useState, useRef } from "react";
+import { useStrapi } from "../../hooks/useStrapi";
+import Markdown from "react-markdown";
 import styles from "./ContactForm.module.css";
 
 export default function ContactForm() {
@@ -6,6 +8,15 @@ export default function ContactForm() {
     const [formData, setFormData] = useState(defaultFormData);
     const [hasFormSubmitted, setHasFormSubmitted] = useState(false);
     const submitButtonRef = useRef();
+
+    const { loading, error, data } = useStrapi("/home?populate=contactForm");
+
+    if (loading) return;
+    if (error) return;
+
+    const contactForm = data.data.attributes.contactForm;
+    const title = contactForm.title;
+    const buttonText = contactForm.buttonText;
 
     function onChange(e) {
         setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -44,10 +55,7 @@ export default function ContactForm() {
     return (
         <section className={styles["contact-form"]} id="contact">
             <div className="container">
-                <h2>
-                    <span className="highlight">Contact me</span> by using the
-                    form below.
-                </h2>
+                <Markdown components={{ p: "h2" }}>{title}</Markdown>
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <div className={styles["input-group"]}>
                         <label htmlFor="name">Name</label>
@@ -79,7 +87,7 @@ export default function ContactForm() {
                         ></textarea>
                     </div>
                     <button ref={submitButtonRef}>
-                        <span>Send message</span>
+                        <span>{buttonText}</span>
                         <div className={styles.loader}></div>
                     </button>
                 </form>
