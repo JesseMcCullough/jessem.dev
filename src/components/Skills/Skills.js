@@ -1,3 +1,5 @@
+import { useStrapi } from "../../hooks/useStrapi";
+import Markdown from "react-markdown";
 import reactLogo from "../../images/skills/react-logo.png";
 import cssLogo from "../../images/skills/css-logo.png";
 import phpLogo from "../../images/skills/php-logo.png";
@@ -8,6 +10,14 @@ import javaLogo from "../../images/skills/java-logo.png";
 import styles from "./Skills.module.css";
 
 export default function Skills() {
+    const { loading, error, data } = useStrapi("/home?populate=skills");
+
+    if (loading) return;
+    if (error) return;
+
+    const skills = data.data.attributes.skills;
+    const title = skills.title;
+
     const logos = [
         { id: 1, logo: javascriptLogo },
         { id: 3, logo: htmlLogo },
@@ -23,14 +33,7 @@ export default function Skills() {
         <section className={styles.skills} id="skills">
             <div className={`${styles.container} container`}>
                 <div className={styles.text}>
-                    <h2>
-                        I know <span className="highlight">JavaScript</span>,{" "}
-                        <span className="highlight">React.js</span>,{" "}
-                        <span className="highlight">PHP</span>,{" "}
-                        <span className="highlight">Java</span>, and more. Plus,
-                        I'm <span className="highlight">always learning</span>{" "}
-                        new things.
-                    </h2>
+                    <Markdown components={{ p: "h2" }}>{title}</Markdown>
                 </div>
                 <div className={styles["grid-wrapper"]}>
                     <div className={styles.grid}>
