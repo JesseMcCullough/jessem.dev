@@ -1,43 +1,51 @@
 import styles from "./Footer.module.css";
-import instagramIcon from "../../images/icons/instagram-icon.png";
-import githubIcon from "../../images/icons/github-icon.png";
-import logo from "../../images/logo.jpg";
+import { useStrapi, getStrapiUrl } from "../../hooks/useStrapi";
 
 export default function Footer() {
+    const { loading, error, data } = useStrapi(
+        "/home?populate[footer][populate][0]=navigationLink&populate[footer][populate][1]=socialMedia.icon&populate[footer][populate][2]=logo"
+    );
+
+    if (loading) return;
+    if (error) return;
+
+    const footer = data.data.attributes.footer;
+    const links = footer.navigationLink;
+    const socialMedia = footer.socialMedia;
+    const logo = getStrapiUrl(footer.logo.data.attributes.url);
+    const copyright = footer.copyright;
+
     return (
         <footer>
             <div className={`${styles.container} container`}>
                 <img className={styles.logo} src={logo} alt="" />
                 <ul>
-                    <li>
-                        <a href="#portfolio">Portfolio</a>
-                    </li>
-                    <li>
-                        <a href="#skills">Skills</a>
-                    </li>
-                    <li>
-                        <a href="#journey">Journey</a>
-                    </li>
+                    {links.map((link) => {
+                        return (
+                            <li>
+                                <a href={link.url}>{link.title}</a>
+                            </li>
+                        );
+                    })}
                 </ul>
                 <div className={styles.icons}>
-                    <a
-                        href="https://www.instagram.com/jessemccullough"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        <img src={instagramIcon} alt="" />
-                    </a>
-                    <a
-                        href="https://github.com/jessemccullough"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        <img src={githubIcon} alt="" />
-                    </a>
+                    {socialMedia.map((social) => {
+                        const icon = getStrapiUrl(
+                            social.icon.data.attributes.url
+                        );
+
+                        return (
+                            <a
+                                href={social.url}
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                <img src={icon} alt={social.title} />
+                            </a>
+                        );
+                    })}
                 </div>
-                <p className={styles.copyright}>
-                    Copyright &copy; 2024 Jesse McCullough. All Rights Reserved.
-                </p>
+                <p className={styles.copyright}>{copyright}</p>
             </div>
         </footer>
     );
