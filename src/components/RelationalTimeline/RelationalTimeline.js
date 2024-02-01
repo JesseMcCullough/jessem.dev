@@ -23,7 +23,9 @@ export default function RelationalTimeline({
     const maximumIndents = Math.floor(initialLineIndent / indentBy);
     const padding = 15;
 
-    const eventsWithChildren = events.filter((entry) => entry.children);
+    const eventsWithChildren = events.filter(
+        (entry) => entry.children && entry.children.length > 0
+    );
 
     // Relations in format parent => [children]
     const relations = new Map(
@@ -44,6 +46,12 @@ export default function RelationalTimeline({
     const verticalOffsets = useRef(calculateOffsets());
 
     useEffect(() => {
+        hasCalculatedIndents.current = false;
+        hasCalculatedOffsets.current = false;
+
+        indents.current = calculateIndents();
+        verticalOffsets.current = calculateOffsets();
+
         setTimeout(
             () => {
                 drawLines();
@@ -59,6 +67,10 @@ export default function RelationalTimeline({
     }, [events]);
 
     function drawLines() {
+        if (events.length === 0) {
+            return;
+        }
+
         for (let [parent, children] of relations) {
             for (let child of children) {
                 const relationId = getRelationId(parent, child);
@@ -136,7 +148,7 @@ export default function RelationalTimeline({
     }
 
     function calculateIndents() {
-        if (hasCalculatedIndents.current) {
+        if (hasCalculatedIndents.current || events.length === 0) {
             return;
         }
         hasCalculatedIndents.current = true;
@@ -288,7 +300,7 @@ export default function RelationalTimeline({
     }
 
     function calculateOffsets() {
-        if (hasCalculatedOffsets.current) {
+        if (hasCalculatedOffsets.current || events.length === 0) {
             return;
         }
         hasCalculatedOffsets.current = true;
@@ -415,6 +427,13 @@ export default function RelationalTimeline({
                     ? `${styles.event} ${styles.highlight}`
                     : styles.event;
 
+                const date = new Date(event.date);
+                const month = date.toLocaleString("default", {
+                    timeZone: "UTC",
+                    month: "short",
+                });
+                const year = date.getUTCFullYear();
+
                 return (
                     <div className={eventClasses} key={event.id}>
                         <div className={styles.box} data-id={event.id}>
@@ -450,21 +469,27 @@ export default function RelationalTimeline({
                             >
                                 {event.title}
                             </Markdown>
+
                             {event.images && event.images.length > 1 && (
-                                <div className={styles["image-slider"]}>
-                                    <ImageSlider
-                                        projectImages={event.images}
-                                        classNames={{
-                                            active: styles[
-                                                "image-slider-active"
-                                            ],
-                                        }}
-                                    />
+                                <div className={styles["image-wrapper"]}>
+                                    <div className={styles["image-slider"]}>
+                                        <ImageSlider
+                                            projectImages={event.images}
+                                            classNames={{
+                                                active: styles[
+                                                    "image-slider-active"
+                                                ],
+                                            }}
+                                        />
+                                    </div>
                                 </div>
                             )}
                             {event.images && event.images.length === 1 && (
-                                <img src={event.images[0]} alt="" />
+                                <div className={styles["image-wrapper"]}>
+                                    <img src={event.images[0]} alt="" />
+                                </div>
                             )}
+
                             {event.description && (
                                 <Markdown
                                     components={{
@@ -515,12 +540,8 @@ export default function RelationalTimeline({
                         <div className={styles.timeline}>
                             <div className={styles.line}></div>
                             <div className={styles.date}>
-                                <span className={styles.month}>
-                                    {event.month}
-                                </span>
-                                <span className={styles.year}>
-                                    {event.year}
-                                </span>
+                                <span className={styles.month}>{month}</span>
+                                <span className={styles.year}>{year}</span>
                             </div>
                         </div>
                     </div>

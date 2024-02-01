@@ -1,16 +1,72 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import RelationalTimeline from "../RelationalTimeline/RelationalTimeline";
 import styles from "./Journey.module.css";
 import journeyData from "../../journeyData";
+import { useStrapi, getStrapiUrl } from "../../hooks/useStrapi";
+import Markdown from "react-markdown";
 
 export default function Journey() {
+    const { loading, error, data } = useStrapi("/home?populate=journey");
+    const strapiEvents = useStrapi("/events?populate=*");
     const [isFullyVisible, setIsFullyVisible] = useState(false);
-    const [events, setEvents] = useState(journeyData);
+    const [events, setEvents] = useState([]);
     const isFiltered = useRef(false);
+    const initialEvents = useRef([]);
     const sectionClasses =
-        isFullyVisible || journeyData.length < 4
+        isFullyVisible || events.length < 4
             ? styles.journey
             : `${styles.journey} ${styles.shorten}`;
+
+    useEffect(() => {
+        const rawEvents = strapiEvents.data;
+        if (rawEvents === null) {
+            return;
+        }
+
+        console.log(rawEvents);
+        const formattedEvents = [];
+        for (let event of rawEvents.data) {
+            const eventId = event.id;
+            const eventTitle = event.attributes.title;
+            const eventDate = event.attributes.date;
+            const eventHighlight = event.attributes.highlight;
+            const eventChildren = [];
+            const eventImages = [];
+
+            for (let eventChild of event.attributes.children.data) {
+                const eventChildId = eventChild.id;
+                eventChildren.push(eventChildId);
+            }
+
+            if (event.attributes.images.data) {
+                for (let eventImage of event.attributes.images.data) {
+                    eventImages.push(getStrapiUrl(eventImage.attributes.url));
+                }
+            }
+
+            formattedEvents.push({
+                id: eventId,
+                title: eventTitle,
+                date: eventDate,
+                highlight: eventHighlight,
+                children: eventChildren,
+                images: eventImages,
+            });
+        }
+
+        if (initialEvents.current.length === 0) {
+            initialEvents.current = formattedEvents;
+        }
+
+        setEvents(formattedEvents);
+    }, [strapiEvents.data]);
+
+    if (loading || strapiEvents.loading) return;
+    if (error || strapiEvents.error) return;
+
+    const journey = data.data.attributes.journey;
+    const title = journey.title;
+    const buttonText = journey.buttonText;
 
     function onClick() {
         if (isFullyVisible) {
@@ -22,12 +78,14 @@ export default function Journey() {
 
     function onClickFilter() {
         if (isFiltered.current) {
-            setEvents(journeyData);
+            setEvents(initialEvents.current);
             isFiltered.current = false;
             return;
         }
 
-        setEvents(journeyData.filter((event) => event.highlight));
+        setEvents((previousEvents) =>
+            previousEvents.filter((event) => event.highlight)
+        );
         isFiltered.current = true;
     }
 
@@ -41,17 +99,11 @@ export default function Journey() {
                             type="button"
                             onClick={onClick}
                         >
-                            Read more about my journey
+                            {buttonText}
                         </button>
                     </div>
                 )}
-                <h2>
-                    My unique journey in <br />
-                    <span className="highlight">
-                        becoming a software engineer
-                    </span>
-                    .
-                </h2>
+                <Markdown components={{ p: "h2" }}>{title}</Markdown>
 
                 <RelationalTimeline
                     events={events}

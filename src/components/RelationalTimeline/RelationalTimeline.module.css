@@ -52,7 +52,7 @@
     font-size: 1.75em;
 }
 
-.box > img {
+.box .image-wrapper img {
     width: 100%;
     box-shadow: 0 0 10px var(--box-shadow-color);
     margin-top: 15px;
@@ -177,6 +177,11 @@
 .event .box > .line[data-indent="12"] {
     border-color: #ffedbc;
     border-color: #b6d7ff;
+}
+
+.image-wrapper {
+    width: 100%;
+    aspect-ratio: 16 / 9;
 }
 
 @media screen and (max-width: 770px) {
